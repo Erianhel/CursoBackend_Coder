@@ -1,0 +1,27 @@
+{
+  "name": "cursobackend_coder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erianhel/CursoBackend_Coder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Erianhel/CursoBackend_Coder/issues"
+  },
+  "homepage": "https://github.com/Erianhel/CursoBackend_Coder#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
