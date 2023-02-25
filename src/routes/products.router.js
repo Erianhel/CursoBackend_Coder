@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { productManager } from "../app.js";
+import {socketServer} from '../app.js'
 
 const router = Router();
 
@@ -25,6 +26,9 @@ router.get('/:pid', async (req, res)=>{
 router.post('/', async (req,res)=>{
     const {title, description, code, price, status, stock, category,thumbnails} = req.body;
     const respuesta = await productManager.addProduct(title,description,code,price,status,stock,category,thumbnails);
+    socketServer.emit('addProduct', ()=>{
+        console.log("Nuevo producto aniadido");
+    });
     res.send(respuesta);
 })
 
@@ -38,6 +42,9 @@ router.put('/:pid', async (req, res)=>{
 router.delete('/:pid', async (req, res)=>{
     const {pid} = req.params;
     const respuesta = await productManager.deleteProduct(+pid);
+    socketServer.emit('deleteProduct', ()=>{
+        console.log("Producto eliminado");
+    });
     res.send(respuesta);
 })
 
