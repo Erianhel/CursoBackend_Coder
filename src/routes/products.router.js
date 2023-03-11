@@ -18,7 +18,7 @@ router.get('/', async (req,res)=>{
 router.get('/:pid', async (req, res)=>{
     const {pid} = req.params;
     console.log(req.params);
-    const product = await productManager.getProductById(+pid);
+    const product = await productManager.getProductById(pid);
     console.log(product);
     res.send(product);
 })
@@ -27,23 +27,26 @@ router.post('/', async (req,res)=>{
     const {title, description, code, price, status, stock, category,thumbnails} = req.body;
     const respuesta = await productManager.addProduct(title,description,code,price,status,stock,category,thumbnails);
     socketServer.emit('addProduct', ()=>{
-        console.log("Nuevo producto aniadido");
+        console.log("Nuevo Producto Añadido");
     });
     res.send(respuesta);
 })
 
 router.put('/:pid', async (req, res)=>{
     const {pid} = req.params;
-    const {title, description, code, price, status, stock = true, category,thumbnails} = req.body;
-    const respuesta = await productManager.updateProduct(+pid,{title,description,code,price,status,stock,category,thumbnails});
+    const {title, description, code, price, status = true, stock, category,thumbnails} = req.body;
+    const respuesta = await productManager.updateProduct(pid,{title,description,code,price,status,stock,category,thumbnails});
+    socketServer.emit('updatedProduct', ()=>{
+        console.log("Producto Actualizado");
+    });
     res.send(respuesta);
 })
 
 router.delete('/:pid', async (req, res)=>{
     const {pid} = req.params;
-    const respuesta = await productManager.deleteProduct(+pid);
+    const respuesta = await productManager.deleteProduct(pid);
     socketServer.emit('deleteProduct', ()=>{
-        console.log("Producto eliminado");
+        console.log("Producto Eliminado");
     });
     res.send(respuesta);
 })

@@ -7,7 +7,7 @@ const router = Router();
 router.get('/:cid', async (req, res)=>{
     const {cid} = req.params;
     console.log(req.params);
-    const products = await cartManager.getProductsByCartId(+cid);
+    const products = await cartManager.getProductsByCartId(cid);
     res.send(products);
 })
 
@@ -21,7 +21,7 @@ router.post('/:cid/product/:pid', async (req,res)=>{
     const {cid, pid} = req.params;
     const {quantity} = req.body;
 
-    const respuesta = await cartManager.addProduct(+cid, +pid,+quantity);
+    const respuesta = await cartManager.addProduct(cid, pid, quantity);
     res.send(respuesta);
 });
 
