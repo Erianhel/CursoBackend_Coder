@@ -1,0 +1,18 @@
+<h1>Listado de productos del Carrito</h1>
+
+<div class="row">
+{{#each products}}
+    <div class="card col-3 m-1" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt={{this.product.thumbnails}}>
+        <div class="card-body">
+            <h5 class="card-title">{{this.product.title}}</h5>
+            <p class="card-text">{{this.product.category}}</p>
+            <p class="card-text">{{this.product.description}}</p>
+            <p class="card-text">{{this.product.code}}</p>
+            <p class="card-text">{{this.product.price}}</p>
+            <p class="card-text">{{this.product.status}}</p>
+            <p class="card-text">{{this.product.stock}}</p>
+        </div>
+    </div>
+{{/each}}
+</div>

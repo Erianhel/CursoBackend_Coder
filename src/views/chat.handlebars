@@ -1,0 +1,20 @@
+<h1>Bienvenidos al chat del e-commerce</h1>
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="chatBox" placeholder="name@example.com">
+  <label for="chatbox">Mensaje</label>
+</div>
+<div id="messageBox">
+    {{#each messages}}
+        <p id="messageLogs">{{this.user}} dice: {{this.message}}</p>
+    {{/each}}
+</div>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
