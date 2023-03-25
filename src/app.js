@@ -31,7 +31,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(session({
     store: MongoStore.create({
-        mongoUrl:"mongodb+srv://leaapagro:1234@ecommerce.h9vznv2.mongodb.net/?retryWrites=true&w=majority",
+        mongoUrl:"mongodb+srv://usuario:contrasenia@ecommerce.h9vznv2.mongodb.net/?retryWrites=true&w=majority",
         mongoOptions:{useNewUrlParser: true, useUnifiedTopology:true},
         ttl:60*3600
     }),
