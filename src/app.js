@@ -22,7 +22,7 @@ const BASE_PREFIX = "/api";
 const app = express();
 const httpServer = app.listen(8080, ()=>console.log("Listening on port 8080"));
 export const socketServer = new Server(httpServer);
-mongoose.connect('mongodb+srv://leaapagro:1234@ecommerce.h9vznv2.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://usuario:contrasenia@ecommerce.h9vznv2.mongodb.net/?retryWrites=true&w=majority');
 
 
 
