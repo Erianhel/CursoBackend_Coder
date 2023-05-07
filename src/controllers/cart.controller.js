@@ -55,9 +55,7 @@ export const deleteProductsByCartId = async(req,res)=>{
 export const purchaseProducts = async(req,res)=>{
     const {cid} = req.params;
     const {email} = req.user.user;
-    console.log("El email es: ", email);
     const {productosNoComprados, amount} = await cartService.purchaseProducts(cid);
-    //console.log({ProductosNoComprados: productosNoComprados, amount: amount});
     const ticket = await ticketService.createTicket(amount,email);
     res.send({ProductosNoComprados: productosNoComprados, tiket: ticket});
 }
