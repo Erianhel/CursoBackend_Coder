@@ -1,4 +1,4 @@
-import { productService } from "../app.js";
+import { productService, socketServer} from "../app.js";
 
 export const getProducts = async (req,res)=>{
     let {limit,page,query,sort} = req.query;
