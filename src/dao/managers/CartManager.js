@@ -92,7 +92,6 @@ export default class CartManager{
         try {
             let carritoEncontrado = await cartsModel.findById({_id:cid}).lean();
             carritoEncontrado.products = newProducts;
-            console.log('update del carrito', carritoEncontrado);
             const carritoModificado = await cartsModel.findByIdAndUpdate({_id:cid}, {_id:cid, ...carritoEncontrado});
             return carritoModificado; 
         } catch (error) {
@@ -143,8 +142,7 @@ export default class CartManager{
                 await productService.updateProduct(productoEncontrado._id, productoEncontrado);
             }     
         });
-        const newCart = await this.updateProductsByCartId( cid, nuevoCarrito);
-        console.log("nuevoCarrito: ", nuevoCarrito);  
+        const newCart = await this.updateProductsByCartId( cid, nuevoCarrito);  
         const productosNoComprados = nuevoCarrito.map((elem)=>elem.product._id); 
         return {productosNoComprados, amount};
     }
