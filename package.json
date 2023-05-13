@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Erianhel/CursoBackend_Coder#readme",
   "dependencies": {
+    "@faker-js/faker": "^8.0.0",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^5.0.0",
     "cookie-parser": "^1.4.6",
