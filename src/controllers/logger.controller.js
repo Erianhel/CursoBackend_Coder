@@ -5,6 +5,6 @@ export const getTest = (req,res) => {
     //req.logger.info("Este es un logger de nivel: info");
     //req.logger.http("Este es un logger de nivel: http");
     //req.logger.debug("Este es un logger de nivel: debug");
-    res.send("Testeando logger");
+    res.send("Logger Test: Descomente las líneas de código para probarlos");
     
 }
