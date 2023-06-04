@@ -1,0 +1,199 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtiene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los carritos fueron obtenidos satisfactoriamente
+    post:
+      summary: Crea un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrtio fue creado satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Carts'
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito por su id
+      tags:
+        - Carts
+      arameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar
+      responses:
+        "200":
+          description: El carrito fue obtenido satisfactoriamente
+    put:
+      summary: Actualiza todos los productos del carrito
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea actualizar
+        schema:
+          $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProductsByCartId'
+      responses:
+        "200":
+          description: El carrito fue actualizado satisfactoriamente
+    delete:
+      summary: Elimina los productos del carrito
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del producto que se desea eliminar
+      responses:
+        "200":
+          description: El carrito fue vaciado satisfactoriamente
+  /api/carts/{cid}/products/{pid}:
+    post:
+      summary: Agrega un producto por su id a un carrito específico por su id
+      tags:
+        - Carts
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea agregar al carrito
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito al que se le desea agregar el producto
+      responses:
+        "200":
+          description: El producto fue agregado al carrito satisfactoriamente
+    delete:
+      summary: Elimina un producto por su id de un carrito específico por su id
+      tags:
+        - Carts
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea eliminar del carrito
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito al que se le desea eliminar el producto
+      responses:
+        "200":
+          description: El producto fue eliminado del carrito satisfactoriamente
+    put:
+      summary: Actualiza la cantidad de un producto por su id
+      tags:
+        - Carts
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto al que se le desea actualizar la cantidad del carrito
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito al que se le desea actualizar el producto
+        schema:
+          $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProductsByCartId'
+      responses:
+        "200":
+          description: La cantidad del producto fue actualizada
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Se realiza el proceso de compra del carrito
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea comprar
+      responses:
+        "200":
+          description: Los productos fueron comprados y actualizados satisfactoriamente
+
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Id autogenerado por mongo
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              product:
+                type: object
+                properties:
+                  _id: 
+                    type: ObjectId
+                    description: Id del producto del carrito
+                  quantity: 
+                    type: number
+                    description: Cantidad del producto en el carrito
+  requestBodies:
+    updateProductsByCartId:
+      type: array
+      items:
+        type: object
+        properties:
+          title: 
+            type: String
+            description: título del producto 
+          description: 
+            type: String
+            description: descripción del producto 
+          code: 
+            type: String
+            description: Código del producto 
+          price: 
+            type: Number
+            description: Precio del producto
+          status: 
+            type: Boolean
+            description: Indica si el producto está disponible 
+          stock: 
+            type: Number
+            description: Cantidad de existencias del producto
+          category: 
+            type: String
+            description: Categoría del producto
+          thumbnails: 
+            type: String
+            description: URL de la imágen del producto
+      example:
+        title: Producto por post 14 
+        description: producto por post  14 
+        code: producto por post  14 
+        price: 10
+        status: true 
+        stock: 0
+        category: producto  14
+        thumbnails: sin imagen 

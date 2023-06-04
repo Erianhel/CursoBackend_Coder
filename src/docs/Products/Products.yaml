@@ -1,0 +1,137 @@
+paths:
+  /api/products/:
+    get:
+      summary: Obtiene todos los productos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Los productos fueron obtenidos satisfactoriamente
+    post:
+      summary: Aniade un producto
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProductById'
+      responses:
+        "200":
+          description: El producto fue aniadido satisfactoriamente
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un producto por su id
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea solicitar
+      responses:
+        "200":
+          description: El producto fue obtenido satisfactoriamente
+    put:
+      summary: Actualiza un producto por su id
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea actualizar
+        schema:
+          $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateProductById'
+      responses:
+        "200":
+          description: El producto fue actualizado satisfactoriamente
+    delete:
+      summary: Elimina un producto por su id
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea eliminar
+      responses:
+        "200":
+          description: El producto fue eliminado satisfactoriamente
+
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado por mongo
+        title:
+          type: String
+          description: Título del producto
+        description:
+          type: String
+          description: Descripción del producto
+        code:
+          type: String
+          description: Código único del producto
+        price:
+          type: Number
+          description: Precio del producto
+        status:
+          type: Boolean
+          description: Estado del producto
+        stock:
+          type: Number
+          description: Cantidad de productos
+        category:
+          type: String
+          description: Categoría del producto
+        thumbnails:
+          type: String
+          description: URL de la imágen del producto
+  requestBodies:
+    updateProductById:
+      type: object
+      properties:
+        title: 
+          type: String
+          description: título del producto 
+        description: 
+          type: String
+          description: descripción del producto 
+        code: 
+          type: String
+          description: Código del producto 
+        price: 
+          type: Number
+          description: Precio del producto
+        status: 
+          type: Boolean
+          description: Indica si el producto está disponible 
+        stock: 
+          type: Number
+          description: Cantidad de existencias del producto
+        category: 
+          type: String
+          description: Categoría del producto
+        thumbnails: 
+          type: String
+          description: URL de la imágen del producto
+      example:
+        title: Producto por post 14 
+        description: producto por post  14 
+        code: producto por post  14 
+        price: 10
+        status: true 
+        stock: 0
+        category: producto  14
+        thumbnails: sin imagen 
